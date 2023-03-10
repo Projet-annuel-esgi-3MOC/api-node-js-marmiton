@@ -1,0 +1,9 @@
+{
+  "name": "scraperMarmiton",
+  "version": "1.0.0",
+  "type": "module",
+  "module": "node16",
+  "dependencies": {
+    "marmiton-api": "^3.0.0"
+  }
+}
