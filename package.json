@@ -4,6 +4,7 @@
   "type": "module",
   "module": "node16",
   "dependencies": {
-    "marmiton-api": "^3.0.0"
+    "marmiton-api": "^3.0.0",
+    "request": "^2.88.2"
   }
 }
