@@ -7,11 +7,11 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install
-RUN npm install nodemon
+RUN npm install -g nodemon
 RUN npm install express 
-# RUN npm install -g @nestjs/cli
+RUN npm install body-parser
 RUN npm install request 
-
+RUN npm install joi
 # Bundle app source
 COPY ./ hello.js
 
