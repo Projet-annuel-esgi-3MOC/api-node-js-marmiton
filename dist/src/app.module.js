@@ -13,11 +13,19 @@ const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const users_module_1 = require("./users/users.module");
 const data_source_1 = require("../db/data-source");
+const recipe_module_1 = require("./recipe/recipe.module");
+const ingredients_module_1 = require("./ingredients/ingredients.module");
+const forum_module_1 = require("./forum/forum.module");
+const level_module_1 = require("./level/level.module");
+const challenge_module_1 = require("./challenge/challenge.module");
+const rewards_module_1 = require("./rewards/rewards.module");
+const league_module_1 = require("./league/league.module");
+const competition_module_1 = require("./competition/competition.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions), users_module_1.UsersModule],
+        imports: [typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions), users_module_1.UsersModule, recipe_module_1.RecipeModule, ingredients_module_1.IngredientsModule, forum_module_1.ForumModule, level_module_1.LevelModule, challenge_module_1.ChallengeModule, rewards_module_1.RewardsModule, league_module_1.LeagueModule, competition_module_1.CompetitionModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
