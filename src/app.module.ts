@@ -12,9 +12,10 @@ import { ChallengeModule } from './challenge/challenge.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { LeagueModule } from './league/league.module';
 import { CompetitionModule } from './competition/competition.module';
+import { MessageModule } from './message/message.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions), UsersModule, RecipeModule, IngredientsModule, ForumModule, LevelModule, ChallengeModule, RewardsModule, LeagueModule, CompetitionModule],
+  imports: [TypeOrmModule.forRoot(dataSourceOptions), UsersModule, RecipeModule, IngredientsModule, ForumModule, LevelModule, ChallengeModule, RewardsModule, LeagueModule, CompetitionModule, MessageModule],
   controllers: [AppController],
   providers: [AppService],
 })
