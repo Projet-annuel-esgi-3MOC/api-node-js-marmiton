@@ -19,7 +19,9 @@ import {
 } from '@loopback/rest';
 import {Recipe} from '../models';
 import {RecipeRepository} from '../repositories';
+import { authenticate } from '@loopback/authentication';
 
+@authenticate('jwt') // <-- apply  the @authenticate decorator at the class level
 export class RecipeController {
   constructor(
     @repository(RecipeRepository)

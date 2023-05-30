@@ -9,6 +9,9 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
+import { JWTAuthenticationComponent, UserServiceBindings } from '@loopback/authentication-jwt';
+import { AuthenticationComponent } from '@loopback/authentication';
+import { MysqlDataSource } from './datasources';
 
 export {ApplicationConfig};
 
@@ -40,5 +43,10 @@ export class CookupApiApplication extends BootMixin(
         nested: true,
       },
     };
+    this.component(AuthenticationComponent);
+    // Mount jwt component
+    this.component(JWTAuthenticationComponent);
+    // Bind datasource
+    this.dataSource( MysqlDataSource, UserServiceBindings.DATASOURCE_NAME);
   }
 }

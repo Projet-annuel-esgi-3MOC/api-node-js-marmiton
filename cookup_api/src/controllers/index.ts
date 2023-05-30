@@ -3,3 +3,4 @@ export * from './user.controller';
 export * from './recipe.controller';
 export * from './ingredients.controller';
 export * from './recipe-ingredients.controller';
+export * from './messages.controller';
