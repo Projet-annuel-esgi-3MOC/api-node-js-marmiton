@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Ingredients} from './ingredients.model';
 
 @model()
 export class Recipe extends Entity {
@@ -23,8 +24,33 @@ export class Recipe extends Entity {
   @property({
     type: 'string',
   })
-  image?: string;
+  photo?: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  level?: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  timetoprepare?: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  timetocook?: string;
+
+  @property({
+    type: 'number',
+  })
+  ingredientsId?: number;
+
+  @hasMany(() => Ingredients)
+  ingredients: Ingredients[];
 
   constructor(data?: Partial<Recipe>) {
     super(data);

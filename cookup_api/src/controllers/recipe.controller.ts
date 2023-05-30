@@ -23,7 +23,7 @@ import {RecipeRepository} from '../repositories';
 export class RecipeController {
   constructor(
     @repository(RecipeRepository)
-    public recipeRepository : RecipeRepository,
+    public recipeRepository: RecipeRepository,
   ) {}
 
   @post('/recipes')
@@ -52,9 +52,7 @@ export class RecipeController {
     description: 'Recipe model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Recipe) where?: Where<Recipe>,
-  ): Promise<Count> {
+  async count(@param.where(Recipe) where?: Where<Recipe>): Promise<Count> {
     return this.recipeRepository.count(where);
   }
 
@@ -70,9 +68,7 @@ export class RecipeController {
       },
     },
   })
-  async find(
-    @param.filter(Recipe) filter?: Filter<Recipe>,
-  ): Promise<Recipe[]> {
+  async find(@param.filter(Recipe) filter?: Filter<Recipe>): Promise<Recipe[]> {
     return this.recipeRepository.find(filter);
   }
 
@@ -106,7 +102,8 @@ export class RecipeController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Recipe, {exclude: 'where'}) filter?: FilterExcludingWhere<Recipe>
+    @param.filter(Recipe, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Recipe>,
   ): Promise<Recipe> {
     return this.recipeRepository.findById(id, filter);
   }
