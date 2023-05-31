@@ -1,27 +1,23 @@
 version: "3.8"
 services:
-  
+
   db:
-    image: mysql:oracle
-    container_name: test_db
+    image: mysql
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
-    volumes:
-      - db-data:/var/lib/mysql 
-
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test_db 
-      MYSQL_PASSWORD: root
-
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: cookup
+       MYSQL_PASSWORD: root
     ports:
-      - "3306:3306"
-      
+      - "8080:3306"
     networks:
-      - dev 
+      - dev
 
   phpmyadmin: 
     image: phpmyadmin
-    container_name: phpymyadmin-test
+    container_name: phpymyadmin
     restart: always
     depends_on:
       - db

@@ -6,7 +6,7 @@ const config = {
   connector: 'mysql',
   url: '',
   host: 'localhost',
-  port: 60033,
+  port: 8080,
   user: 'root',
   password: 'root',
   database: 'cookup',
