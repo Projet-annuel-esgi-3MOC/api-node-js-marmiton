@@ -123,3 +123,121 @@
 2023-05-31 15:18:44 error: SQLITE_ERROR: no such table: issues
 2023-05-31 15:18:49 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/index.lock
 2023-05-31 15:18:49 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:25 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/index.lock
+2023-05-31 15:19:25 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/objects/da/tmp_obj_wdTAqA
+2023-05-31 15:19:25 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:25 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:33 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/HEAD.lock
+2023-05-31 15:19:33 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/index.lock
+2023-05-31 15:19:33 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/refs/heads/main.lock
+2023-05-31 15:19:33 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/objects/maintenance.lock
+2023-05-31 15:19:33 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/objects/73/tmp_obj_HF9SKW
+2023-05-31 15:19:33 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/objects/d4/tmp_obj_WuOx44
+2023-05-31 15:19:33 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/objects/23/tmp_obj_Lglfpq
+2023-05-31 15:19:33 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:33 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:33 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:33 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:33 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:33 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:33 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:42 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/refs/remotes/origin/main.lock
+2023-05-31 15:19:42 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:19:47 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/index.lock
+2023-05-31 15:19:47 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:21:44 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/objects/maintenance.lock
+2023-05-31 15:21:44 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:55 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/db/mysql.sock
+2023-05-31 15:22:55 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/ejs
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/tsc
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/glob
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/jake
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/mime
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/uuid
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/acorn
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/json5
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/mocha
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/_mocha
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/eslint
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/lb-tsc
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/mkdirp
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/nanoid
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/parser
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/rimraf
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/semver
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/esparse
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/js-yaml
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/lb-ttsc
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/resolve
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/lb-clean
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/lb-mocha
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/prettier
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/tsserver
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/json2yaml
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/lb-eslint
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/yaml2json
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/esvalidate
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/lb-prettier
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/.bin/update-browserslist-db
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:22:59 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/mocha/node_modules/.bin/nanoid
+2023-05-31 15:22:59 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:02 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/flat-cache/node_modules/.bin/rimraf
+2023-05-31 15:23:02 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:06 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/superagent/node_modules/.bin/mime
+2023-05-31 15:23:06 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:06 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/hyperid/node_modules/.bin/uuid
+2023-05-31 15:23:06 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:09 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/istanbul-lib-processinfo/node_modules/.bin/uuid
+2023-05-31 15:23:09 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/istanbul-lib-processinfo/node_modules/.bin/rimraf
+2023-05-31 15:23:09 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:09 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:11 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/%40babel/core/node_modules/.bin/semver
+2023-05-31 15:23:11 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:12 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/istanbul-lib-instrument/node_modules/.bin/semver
+2023-05-31 15:23:12 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:14 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/loopback-connector-mysql/node_modules/.bin/uuid
+2023-05-31 15:23:14 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/loopback-connector-mysql/node_modules/.bin/mkdirp
+2023-05-31 15:23:14 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:14 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:15 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/spawn-wrap/node_modules/.bin/rimraf
+2023-05-31 15:23:15 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:16 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/node_modules/%40istanbuljs/load-nyc-config/node_modules/.bin/js-yaml
+2023-05-31 15:23:16 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:23 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/cookup_api
+2023-05-31 15:23:23 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:41 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/index.lock
+2023-05-31 15:23:41 info: file:///Users/pedriito/Documents/GitHub/api-node-js-marmiton/.git/objects/57/tmp_obj_ZGWxTK
+2023-05-31 15:23:41 error: SQLITE_ERROR: no such table: issues
+2023-05-31 15:23:41 error: SQLITE_ERROR: no such table: issues
