@@ -14,7 +14,6 @@ const authentication_1 = require("@loopback/authentication");
 const datasources_1 = require("./datasources");
 const hash_password_bcryptjs_1 = require("./services/hash.password.bcryptjs");
 const keys_1 = require("./keys");
-const ConversionService_1 = require("./services/ConversionService");
 class CookupApiApplication extends (0, boot_1.BootMixin)((0, service_proxy_1.ServiceMixin)((0, repository_1.RepositoryMixin)(rest_1.RestApplication))) {
     constructor(options = {}) {
         super(options);
@@ -26,7 +25,6 @@ class CookupApiApplication extends (0, boot_1.BootMixin)((0, service_proxy_1.Ser
         this.configure(rest_explorer_1.RestExplorerBindings.COMPONENT).to({
             path: '/explorer',
         });
-        this.bind('services.ConversionService').toClass(ConversionService_1.ConversionService);
         // Bind password hasher
         this.bind(keys_1.PasswordHasherBindings.PASSWORD_HASHER).toClass(hash_password_bcryptjs_1.BcryptHasher);
         // Bind the rounds for password hashing

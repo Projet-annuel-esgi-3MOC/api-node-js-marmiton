@@ -1,34 +1,25 @@
-/// <reference types="express" />
-import { Request } from '@loopback/rest';
-import { UserProfile } from '@loopback/security';
+import { TokenService, UserService } from '@loopback/authentication';
+import { SchemaObject } from '@loopback/rest';
+import { Credentials } from '@loopback/authentication-jwt';
 import { User } from '../models';
-import { Credentials, UserRepository } from '../repositories';
-import { PasswordHasher } from '../services/hash.password.bcryptjs';
-import { TokenService } from '../services/token.service';
-import { MyUserService } from '../services/user.service';
-import { ConversionService } from '../services/ConversionService';
-import { AccessTokenRepository } from '../repositories/access-token.repository';
+export declare const CredentialsRequestBody: {
+    description: string;
+    required: boolean;
+    content: {
+        'application/json': {
+            schema: SchemaObject;
+        };
+    };
+};
 export declare class UserController {
-    userRepository: UserRepository;
-    userService: MyUserService;
-    tokenService: TokenService;
-    passwordHasher: PasswordHasher;
-    accessTokenRepository: AccessTokenRepository;
-    private req;
-    private conversionService;
-    constructor(userRepository: UserRepository, userService: MyUserService, tokenService: TokenService, passwordHasher: PasswordHasher, accessTokenRepository: AccessTokenRepository, req: Request, conversionService: ConversionService);
-    register(user: User): Promise<User>;
-    me(currentUserProfile: UserProfile): Promise<UserProfile>;
+    jwtService: TokenService;
+    userService: UserService<User, Credentials>;
+    constructor(jwtService: TokenService, userService: UserService<User, Credentials>);
     login(credentials: Credentials): Promise<{
-        authToken: string;
+        token: string;
     }>;
-    logout(currentUserProfile: UserProfile): Promise<boolean>;
-    convertVarbinaryToJson(requestData: {
-        varbinaryData: string;
-    }): Promise<any>;
-    convertJsonToVarbinary(requestData: {
-        jsonData: any;
-    }): Promise<{
-        varbinaryData: string;
+    register(credentials: Credentials): Promise<{
+        message: string;
     }>;
+    logout(): Promise<void>;
 }
