@@ -1,6 +1,20 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({
+  settings: {
+    hiddenProperties: ['password', 'salt'],
+    indexes: {
+      uniqueEmail: {
+        keys: {
+          email: 1,
+        },
+        options: {
+          unique: true,
+        }
+      }
+    }
+  }
+})
 export class User extends Entity {
   @property({
     type: 'number',
@@ -17,19 +31,39 @@ export class User extends Entity {
 
   @property({
     type: 'string',
+    required: true,
   })
-  username?: string;
+  name: string;
 
   @property({
     type: 'string',
+    required: true,
   })
-  experience?: string;
+  surname: string;
 
   @property({
     type: 'string',
     required: true,
   })
   password: string;
+
+  @property({
+    type: 'array',
+    itemType: 'string',
+  })
+  roles?: string[];
+
+  @property({
+    type: 'boolean',
+    default: false,
+  })
+  emailVerified?: boolean;
+
+  @property({
+    type: 'date',
+    default: () => new Date()
+  })
+  created?: string;
 
 
   constructor(data?: Partial<User>) {

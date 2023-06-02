@@ -11,6 +11,8 @@ export declare class MysqlDataSource extends juggler.DataSource implements LifeC
         user: string;
         password: string;
         database: string;
+        charset: string;
+        collation: string;
     };
     constructor(dsConfig?: object);
 }

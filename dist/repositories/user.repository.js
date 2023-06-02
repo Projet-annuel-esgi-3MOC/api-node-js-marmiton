@@ -10,6 +10,17 @@ let UserRepository = class UserRepository extends repository_1.DefaultCrudReposi
     constructor(dataSource) {
         super(models_1.User, dataSource);
     }
+    async findCredentials(userId) {
+        try {
+            return await this.findById(userId);
+        }
+        catch (err) {
+            if (err.code === 'ENTITY_NOT_FOUND') {
+                return undefined;
+            }
+            throw err;
+        }
+    }
 };
 UserRepository = tslib_1.__decorate([
     tslib_1.__param(0, (0, core_1.inject)('datasources.mysql')),

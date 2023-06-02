@@ -26,15 +26,17 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     (0, repository_1.property)({
         type: 'string',
+        required: true,
     }),
     tslib_1.__metadata("design:type", String)
-], User.prototype, "username", void 0);
+], User.prototype, "name", void 0);
 tslib_1.__decorate([
     (0, repository_1.property)({
         type: 'string',
+        required: true,
     }),
     tslib_1.__metadata("design:type", String)
-], User.prototype, "experience", void 0);
+], User.prototype, "surname", void 0);
 tslib_1.__decorate([
     (0, repository_1.property)({
         type: 'string',
@@ -42,8 +44,43 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", String)
 ], User.prototype, "password", void 0);
+tslib_1.__decorate([
+    (0, repository_1.property)({
+        type: 'array',
+        itemType: 'string',
+    }),
+    tslib_1.__metadata("design:type", Array)
+], User.prototype, "roles", void 0);
+tslib_1.__decorate([
+    (0, repository_1.property)({
+        type: 'boolean',
+        default: false,
+    }),
+    tslib_1.__metadata("design:type", Boolean)
+], User.prototype, "emailVerified", void 0);
+tslib_1.__decorate([
+    (0, repository_1.property)({
+        type: 'date',
+        default: () => new Date()
+    }),
+    tslib_1.__metadata("design:type", String)
+], User.prototype, "created", void 0);
 User = tslib_1.__decorate([
-    (0, repository_1.model)(),
+    (0, repository_1.model)({
+        settings: {
+            hiddenProperties: ['password', 'salt'],
+            indexes: {
+                uniqueEmail: {
+                    keys: {
+                        email: 1,
+                    },
+                    options: {
+                        unique: true,
+                    }
+                }
+            }
+        }
+    }),
     tslib_1.__metadata("design:paramtypes", [Object])
 ], User);
 exports.User = User;

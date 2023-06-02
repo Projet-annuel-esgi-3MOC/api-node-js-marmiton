@@ -12,6 +12,9 @@ import {MySequence} from './sequence';
 import { JWTAuthenticationComponent, UserServiceBindings } from '@loopback/authentication-jwt';
 import { AuthenticationComponent } from '@loopback/authentication';
 import { MysqlDataSource } from './datasources';
+import {BcryptHasher} from './services/hash.password.bcryptjs';
+import { PasswordHasherBindings } from './keys';
+import { ConversionService } from './services/ConversionService';
 
 export {ApplicationConfig};
 
@@ -31,6 +34,17 @@ export class CookupApiApplication extends BootMixin(
     this.configure(RestExplorerBindings.COMPONENT).to({
       path: '/explorer',
     });
+    
+    this.bind('services.ConversionService').toClass(ConversionService);
+
+
+    // Bind password hasher
+    this.bind(PasswordHasherBindings.PASSWORD_HASHER).toClass(BcryptHasher);
+    
+    // Bind the rounds for password hashing
+    this.bind(PasswordHasherBindings.ROUNDS).to(10); // Adjust the value as needed
+
+    // Bind authentication component related elements
     this.component(RestExplorerComponent);
 
     this.projectRoot = __dirname;

@@ -1,28 +1,34 @@
-import { TokenService } from '@loopback/authentication';
-import { Credentials, MyUserService, User, UserRepository } from '@loopback/authentication-jwt';
-import { SchemaObject } from '@loopback/rest';
+/// <reference types="express" />
+import { Request } from '@loopback/rest';
 import { UserProfile } from '@loopback/security';
-export declare class NewUserRequest extends User {
-    password: string;
-}
-export declare const CredentialsRequestBody: {
-    description: string;
-    required: boolean;
-    content: {
-        'application/json': {
-            schema: SchemaObject;
-        };
-    };
-};
+import { User } from '../models';
+import { Credentials, UserRepository } from '../repositories';
+import { PasswordHasher } from '../services/hash.password.bcryptjs';
+import { TokenService } from '../services/token.service';
+import { MyUserService } from '../services/user.service';
+import { ConversionService } from '../services/ConversionService';
+import { AccessTokenRepository } from '../repositories/access-token.repository';
 export declare class UserController {
-    jwtService: TokenService;
+    userRepository: UserRepository;
     userService: MyUserService;
-    user: UserProfile;
-    protected userRepository: UserRepository;
-    constructor(jwtService: TokenService, userService: MyUserService, user: UserProfile, userRepository: UserRepository);
+    tokenService: TokenService;
+    passwordHasher: PasswordHasher;
+    accessTokenRepository: AccessTokenRepository;
+    private req;
+    private conversionService;
+    constructor(userRepository: UserRepository, userService: MyUserService, tokenService: TokenService, passwordHasher: PasswordHasher, accessTokenRepository: AccessTokenRepository, req: Request, conversionService: ConversionService);
+    register(user: User): Promise<User>;
+    me(currentUserProfile: UserProfile): Promise<UserProfile>;
     login(credentials: Credentials): Promise<{
-        token: string;
+        authToken: string;
     }>;
-    whoAmI(currentUserProfile: UserProfile): Promise<string>;
-    signUp(newUserRequest: NewUserRequest): Promise<User>;
+    logout(currentUserProfile: UserProfile): Promise<boolean>;
+    convertVarbinaryToJson(requestData: {
+        varbinaryData: string;
+    }): Promise<any>;
+    convertJsonToVarbinary(requestData: {
+        jsonData: any;
+    }): Promise<{
+        varbinaryData: string;
+    }>;
 }

@@ -10,12 +10,10 @@ const config = {
   user: 'root',
   password: 'root',
   database: 'cookup',
+  charset: 'utf8mb4utf8mb4_0900_ai_ci',
+  collation: 'utf8mb4_bin',
 };
 
-// Observe application's life cycle to disconnect the datasource when
-// application is stopped. This allows the application to be shut down
-// gracefully. The `stop()` method is inherited from `juggler.DataSource`.
-// Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
 @lifeCycleObserver('datasource')
 export class MysqlDataSource
   extends juggler.DataSource

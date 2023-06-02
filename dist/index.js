@@ -7,9 +7,9 @@ const application_1 = require("./application");
 tslib_1.__exportStar(require("./application"), exports);
 async function main(options = {}) {
     const app = new application_1.CookupApiApplication(options);
-    await app.migrateSchema();
     await app.boot();
     await app.start();
+    // Migrate the database schema
     const { url } = app.restServer;
     console.log(`Server is running at ${url}`);
     console.log(`Try ${url}/ping`);
@@ -34,7 +34,7 @@ if (require.main === module) {
             },
         },
     };
-    main(config).catch(err => {
+    main(config).catch((err) => {
         console.error('Cannot start the application.', err);
         process.exit(1);
     });

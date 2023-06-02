@@ -1,14 +1,17 @@
-import {ApplicationConfig, CookupApiApplication} from './application';
+import { ApplicationConfig, CookupApiApplication } from './application';
+import { migrate } from './migrate'; // Import the migrate function
 
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
   const app = new CookupApiApplication(options);
-  await app.migrateSchema();
   await app.boot();
   await app.start();
 
-  const {url} = app.restServer;
+  // Migrate the database schema
+
+
+  const { url } = app.restServer;
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);
 
@@ -17,7 +20,7 @@ export async function main(options: ApplicationConfig = {}) {
 
 if (require.main === module) {
   // Run the application
-  const config = {
+  const config: ApplicationConfig = {
     rest: {
       port: +(process.env.PORT ?? 3000),
       host: process.env.HOST,
@@ -33,7 +36,7 @@ if (require.main === module) {
       },
     },
   };
-  main(config).catch(err => {
+  main(config).catch((err) => {
     console.error('Cannot start the application.', err);
     process.exit(1);
   });
