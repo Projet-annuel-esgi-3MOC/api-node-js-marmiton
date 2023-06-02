@@ -185,10 +185,11 @@ dist
 # Local History for Visual Studio Code
 .history/
 .embold
+.embold/vscode-logs.log
 
 # Built Visual Studio Code Extensions
 *.vsix
-
+*.logs
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
@@ -221,4 +222,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/node,macos,windows,visualstudiocode
-.embold/vscode-logs.log
+
+
