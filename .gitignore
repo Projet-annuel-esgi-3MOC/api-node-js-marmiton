@@ -184,6 +184,7 @@ dist
 
 # Local History for Visual Studio Code
 .history/
+.embold
 
 # Built Visual Studio Code Extensions
 *.vsix
