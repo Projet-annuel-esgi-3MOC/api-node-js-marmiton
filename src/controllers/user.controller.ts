@@ -4,13 +4,17 @@ import {post, requestBody, SchemaObject, del} from '@loopback/rest';
 import {
   Credentials,
   TokenServiceBindings,
-  UserServiceBindings,
+  UserServiceBindings
 } from '@loopback/authentication-jwt';
 import {User} from '../models';
+import { hashPassword } from '../services/hash.password.bcryptjs';
+import { UserRepository } from '../repositories';
+import { repository } from '@loopback/repository';
+
 
 const CredentialsSchema: SchemaObject = {
   type: 'object',
-  required: ['email', 'password'],
+  required: ['email', 'name', 'surname','password'],
   properties: {
     email: {
       type: 'string',
@@ -37,6 +41,8 @@ export class UserController {
     public jwtService: TokenService,
     @inject(UserServiceBindings.USER_SERVICE)
     public userService: UserService<User, Credentials>,
+    @repository(UserRepository)
+    public userRepository: UserRepository,
   ) {}
 
   @post('/users/login', {
@@ -93,44 +99,60 @@ export class UserController {
     },
   })
   async register(
-    @requestBody({
-      description: 'User registration',
-      required: true,
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              email: {
-                type: 'string',
-                format: 'email',
-              },
-              password: {
-                type: 'string',
-                minLength: 8,
-              },
+  @requestBody({
+    description: 'User registration',
+    required: true,
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+            },
+            surname: {
+              type: 'string',
+            },
+            email: {
+              type: 'string',
+              format: 'email',
+            },
+            password: {
+              type: 'string',
+              minLength: 8,
             },
           },
         },
       },
-    })
-    credentials: Credentials,
-  ): Promise<{message: string}> {
-    // You can implement your own logic here to create a user
-    // For example, you can use a repository to persist the user in a database
-    // or call an external service to create the user
+    },
+  })
+  credentials: Credentials,
+): Promise<{ message: string }> {
+  try {
+    const { name, surname, email, password } = credentials;
 
-    // Example using a repository:
-    // const user = new User();
-    // user.email = credentials.email;
-    // user.password = credentials.password;
-    // await this.userRepository.create(user);
+    // Check if the user with the provided email already exists in the database
+    const existingUser = await this.userRepository.findOne({ where: { email } });
 
-    // Example using an external service:
-    // await this.externalUserService.createUser(credentials.email, credentials.password);
+    if (existingUser) {
+      // If the user already exists, return an error message
+      return { message: 'User with this email already exists' };
+    }
 
-    return {message: 'User registered successfully'};
+    // Hash the password before storing it in the database
+    const hashedPassword = await hashPassword(password, 10);
+
+    // Create a new user with the provided data
+    await this.userRepository.create({ name, surname, email, password: hashedPassword, roles: ['user'] });
+
+    return { message: 'User registered successfully' };
+  } catch (error) {
+    // Handle any errors that occur during the registration process
+    console.error('Error during user registration:', error);
+    return { message: 'An error occurred during user registration' };
   }
+}
+
 
   @del('/users/logout', {
     responses: {
@@ -139,11 +161,9 @@ export class UserController {
       },
     },
   })
-  async logout(): Promise<void> {
-    // Perform any additional logout logic here
-    // e.g. invalidate the token, remove session, etc.
-    // This example assumes a stateless JWT-based authentication
-    // where the client handles the token expiration.
-    // So, there is no server-side token invalidation required.
+  async logout(
+    
+  ): Promise<void> {
+     
   }
 }
