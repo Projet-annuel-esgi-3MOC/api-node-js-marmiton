@@ -31,13 +31,11 @@ export class User extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
   name: string;
 
   @property({
     type: 'string',
-    required: true,
   })
   surname: string;
 

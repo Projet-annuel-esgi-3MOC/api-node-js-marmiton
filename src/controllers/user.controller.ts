@@ -1,6 +1,6 @@
 import { TokenService, UserService } from '@loopback/authentication';
 import { inject } from '@loopback/core';
-import { post, requestBody, SchemaObject, del, get, param } from '@loopback/rest';
+import { post, requestBody, del, get, param } from '@loopback/rest';
 import {
   Credentials,
   TokenServiceBindings,
@@ -10,29 +10,6 @@ import { User } from '../models';
 import { hashPassword } from '../services/hash.password.bcryptjs';
 import { UserRepository } from '../repositories';
 import { repository } from '@loopback/repository';
-
-const CredentialsSchema: SchemaObject = {
-  type: 'object',
-  required: ['email', 'name', 'surname', 'password'],
-  properties: {
-    email: {
-      type: 'string',
-      format: 'email',
-    },
-    password: {
-      type: 'string',
-      minLength: 8,
-    },
-  },
-};
-
-export const CredentialsRequestBody = {
-  description: 'The input of login function',
-  required: true,
-  content: {
-    'application/json': { schema: CredentialsSchema },
-  },
-};
 
 export class UserController {
   constructor(
@@ -64,7 +41,29 @@ export class UserController {
     },
   })
   async login(
-    @requestBody(CredentialsRequestBody) credentials: Credentials,
+    @requestBody({
+      description: 'The input of login function',
+      required: true,
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              email: {
+                type: 'string',
+                format: 'email',
+              },
+              password: {
+                type: 'string',
+                minLength: 8,
+              },
+            },
+            required: ['email', 'password'],
+          },
+        },
+      },
+    })
+    credentials: Credentials,
   ): Promise<{ token: string }> {
     const user = await this.userService.verifyCredentials(credentials);
     const userProfile = this.userService.convertToUserProfile(user);
@@ -100,12 +99,6 @@ export class UserController {
           schema: {
             type: 'object',
             properties: {
-              name: {
-                type: 'string',
-              },
-              surname: {
-                type: 'string',
-              },
               email: {
                 type: 'string',
                 format: 'email',
@@ -115,6 +108,7 @@ export class UserController {
                 minLength: 8,
               },
             },
+            required: ['email', 'password'],
           },
         },
       },
@@ -122,7 +116,7 @@ export class UserController {
     credentials: Credentials,
   ): Promise<{ message: string }> {
     try {
-      const { name, surname, email, password } = credentials;
+      const { email, password } = credentials;
       const existingUser = await this.userRepository.findOne({ where: { email } });
 
       if (existingUser) {
@@ -130,7 +124,7 @@ export class UserController {
       }
 
       const hashedPassword = await hashPassword(password, 10);
-      await this.userRepository.create({ name, surname, email, password: hashedPassword, roles: ['user'] });
+      await this.userRepository.create({ email, password: hashedPassword, roles: ['user'] });
       return { message: 'User registered successfully' };
     } catch (error) {
       console.error('Error during user registration:', error);

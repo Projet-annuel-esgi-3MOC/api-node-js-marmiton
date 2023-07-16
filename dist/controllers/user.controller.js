@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = exports.CredentialsRequestBody = void 0;
+exports.UserController = void 0;
 const tslib_1 = require("tslib");
 const core_1 = require("@loopback/core");
 const rest_1 = require("@loopback/rest");
@@ -8,27 +8,6 @@ const authentication_jwt_1 = require("@loopback/authentication-jwt");
 const hash_password_bcryptjs_1 = require("../services/hash.password.bcryptjs");
 const repositories_1 = require("../repositories");
 const repository_1 = require("@loopback/repository");
-const CredentialsSchema = {
-    type: 'object',
-    required: ['email', 'name', 'surname', 'password'],
-    properties: {
-        email: {
-            type: 'string',
-            format: 'email',
-        },
-        password: {
-            type: 'string',
-            minLength: 8,
-        },
-    },
-};
-exports.CredentialsRequestBody = {
-    description: 'The input of login function',
-    required: true,
-    content: {
-        'application/json': { schema: CredentialsSchema },
-    },
-};
 let UserController = class UserController {
     constructor(jwtService, userService, userRepository) {
         this.jwtService = jwtService;
@@ -43,13 +22,13 @@ let UserController = class UserController {
     }
     async register(credentials) {
         try {
-            const { name, surname, email, password } = credentials;
+            const { email, password } = credentials;
             const existingUser = await this.userRepository.findOne({ where: { email } });
             if (existingUser) {
                 return { message: 'User with this email already exists' };
             }
             const hashedPassword = await (0, hash_password_bcryptjs_1.hashPassword)(password, 10);
-            await this.userRepository.create({ name, surname, email, password: hashedPassword, roles: ['user'] });
+            await this.userRepository.create({ email, password: hashedPassword, roles: ['user'] });
             return { message: 'User registered successfully' };
         }
         catch (error) {
@@ -87,7 +66,28 @@ tslib_1.__decorate([
             },
         },
     }),
-    tslib_1.__param(0, (0, rest_1.requestBody)(exports.CredentialsRequestBody)),
+    tslib_1.__param(0, (0, rest_1.requestBody)({
+        description: 'The input of login function',
+        required: true,
+        content: {
+            'application/json': {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        email: {
+                            type: 'string',
+                            format: 'email',
+                        },
+                        password: {
+                            type: 'string',
+                            minLength: 8,
+                        },
+                    },
+                    required: ['email', 'password'],
+                },
+            },
+        },
+    })),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [Object]),
     tslib_1.__metadata("design:returntype", Promise)
@@ -120,12 +120,6 @@ tslib_1.__decorate([
                 schema: {
                     type: 'object',
                     properties: {
-                        name: {
-                            type: 'string',
-                        },
-                        surname: {
-                            type: 'string',
-                        },
                         email: {
                             type: 'string',
                             format: 'email',
@@ -135,6 +129,7 @@ tslib_1.__decorate([
                             minLength: 8,
                         },
                     },
+                    required: ['email', 'password'],
                 },
             },
         },
