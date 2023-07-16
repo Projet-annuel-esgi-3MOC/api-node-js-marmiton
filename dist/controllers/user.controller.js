@@ -36,36 +36,35 @@ let UserController = class UserController {
         this.userRepository = userRepository;
     }
     async login(credentials) {
-        // ensure the user exists, and the password is correct
         const user = await this.userService.verifyCredentials(credentials);
-        // convert a User object into a UserProfile object (reduced set of properties)
         const userProfile = this.userService.convertToUserProfile(user);
-        // create a JSON Web Token based on the user profile
         const token = await this.jwtService.generateToken(userProfile);
         return { token };
     }
     async register(credentials) {
         try {
             const { name, surname, email, password } = credentials;
-            // Check if the user with the provided email already exists in the database
             const existingUser = await this.userRepository.findOne({ where: { email } });
             if (existingUser) {
-                // If the user already exists, return an error message
                 return { message: 'User with this email already exists' };
             }
-            // Hash the password before storing it in the database
             const hashedPassword = await (0, hash_password_bcryptjs_1.hashPassword)(password, 10);
-            // Create a new user with the provided data
             await this.userRepository.create({ name, surname, email, password: hashedPassword, roles: ['user'] });
             return { message: 'User registered successfully' };
         }
         catch (error) {
-            // Handle any errors that occur during the registration process
             console.error('Error during user registration:', error);
             return { message: 'An error occurred during user registration' };
         }
     }
     async logout() {
+        // Implement your logout logic here
+    }
+    async findById(id) {
+        return await this.userRepository.findById(Number(id));
+    }
+    async findAll() {
+        return await this.userRepository.find();
     }
 };
 tslib_1.__decorate([
@@ -156,6 +155,60 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", []),
     tslib_1.__metadata("design:returntype", Promise)
 ], UserController.prototype, "logout", null);
+tslib_1.__decorate([
+    (0, rest_1.get)('/users/{id}', {
+        responses: {
+            '200': {
+                description: 'User by ID',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            properties: {
+                                id: { type: 'string' },
+                                name: { type: 'string' },
+                                surname: { type: 'string' },
+                                email: { type: 'string', format: 'email' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    }),
+    tslib_1.__param(0, rest_1.param.path.string('id')),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [String]),
+    tslib_1.__metadata("design:returntype", Promise)
+], UserController.prototype, "findById", null);
+tslib_1.__decorate([
+    (0, rest_1.get)('/users', {
+        responses: {
+            '200': {
+                description: 'List of all users',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'array',
+                            items: {
+                                type: 'object',
+                                properties: {
+                                    id: { type: 'string' },
+                                    name: { type: 'string' },
+                                    surname: { type: 'string' },
+                                    email: { type: 'string', format: 'email' },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    }),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", []),
+    tslib_1.__metadata("design:returntype", Promise)
+], UserController.prototype, "findAll", null);
 UserController = tslib_1.__decorate([
     tslib_1.__param(0, (0, core_1.inject)(authentication_jwt_1.TokenServiceBindings.TOKEN_SERVICE)),
     tslib_1.__param(1, (0, core_1.inject)(authentication_jwt_1.UserServiceBindings.USER_SERVICE)),

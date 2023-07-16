@@ -1,20 +1,19 @@
-import {TokenService, UserService} from '@loopback/authentication';
-import {inject} from '@loopback/core';
-import {post, requestBody, SchemaObject, del} from '@loopback/rest';
+import { TokenService, UserService } from '@loopback/authentication';
+import { inject } from '@loopback/core';
+import { post, requestBody, SchemaObject, del, get, param } from '@loopback/rest';
 import {
   Credentials,
   TokenServiceBindings,
   UserServiceBindings
 } from '@loopback/authentication-jwt';
-import {User} from '../models';
+import { User } from '../models';
 import { hashPassword } from '../services/hash.password.bcryptjs';
 import { UserRepository } from '../repositories';
 import { repository } from '@loopback/repository';
 
-
 const CredentialsSchema: SchemaObject = {
   type: 'object',
-  required: ['email', 'name', 'surname','password'],
+  required: ['email', 'name', 'surname', 'password'],
   properties: {
     email: {
       type: 'string',
@@ -31,7 +30,7 @@ export const CredentialsRequestBody = {
   description: 'The input of login function',
   required: true,
   content: {
-    'application/json': {schema: CredentialsSchema},
+    'application/json': { schema: CredentialsSchema },
   },
 };
 
@@ -66,17 +65,11 @@ export class UserController {
   })
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
-  ): Promise<{token: string}> {
-    // ensure the user exists, and the password is correct
+  ): Promise<{ token: string }> {
     const user = await this.userService.verifyCredentials(credentials);
-
-    // convert a User object into a UserProfile object (reduced set of properties)
     const userProfile = this.userService.convertToUserProfile(user);
-
-    // create a JSON Web Token based on the user profile
     const token = await this.jwtService.generateToken(userProfile);
-
-    return {token};
+    return { token };
   }
 
   @post('/users/register', {
@@ -99,60 +92,51 @@ export class UserController {
     },
   })
   async register(
-  @requestBody({
-    description: 'User registration',
-    required: true,
-    content: {
-      'application/json': {
-        schema: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string',
-            },
-            surname: {
-              type: 'string',
-            },
-            email: {
-              type: 'string',
-              format: 'email',
-            },
-            password: {
-              type: 'string',
-              minLength: 8,
+    @requestBody({
+      description: 'User registration',
+      required: true,
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              name: {
+                type: 'string',
+              },
+              surname: {
+                type: 'string',
+              },
+              email: {
+                type: 'string',
+                format: 'email',
+              },
+              password: {
+                type: 'string',
+                minLength: 8,
+              },
             },
           },
         },
       },
-    },
-  })
-  credentials: Credentials,
-): Promise<{ message: string }> {
-  try {
-    const { name, surname, email, password } = credentials;
+    })
+    credentials: Credentials,
+  ): Promise<{ message: string }> {
+    try {
+      const { name, surname, email, password } = credentials;
+      const existingUser = await this.userRepository.findOne({ where: { email } });
 
-    // Check if the user with the provided email already exists in the database
-    const existingUser = await this.userRepository.findOne({ where: { email } });
+      if (existingUser) {
+        return { message: 'User with this email already exists' };
+      }
 
-    if (existingUser) {
-      // If the user already exists, return an error message
-      return { message: 'User with this email already exists' };
+      const hashedPassword = await hashPassword(password, 10);
+      await this.userRepository.create({ name, surname, email, password: hashedPassword, roles: ['user'] });
+      return { message: 'User registered successfully' };
+    } catch (error) {
+      console.error('Error during user registration:', error);
+      return { message: 'An error occurred during user registration' };
     }
-
-    // Hash the password before storing it in the database
-    const hashedPassword = await hashPassword(password, 10);
-
-    // Create a new user with the provided data
-    await this.userRepository.create({ name, surname, email, password: hashedPassword, roles: ['user'] });
-
-    return { message: 'User registered successfully' };
-  } catch (error) {
-    // Handle any errors that occur during the registration process
-    console.error('Error during user registration:', error);
-    return { message: 'An error occurred during user registration' };
   }
-}
-
 
   @del('/users/logout', {
     responses: {
@@ -161,9 +145,58 @@ export class UserController {
       },
     },
   })
-  async logout(
-    
-  ): Promise<void> {
-     
+  async logout(): Promise<void> {
+    // Implement your logout logic here
+  }
+
+  @get('/users/{id}', {
+    responses: {
+      '200': {
+        description: 'User by ID',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                id: { type: 'string' },
+                name: { type: 'string' },
+                surname: { type: 'string' },
+                email: { type: 'string', format: 'email' },
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+  async findById(@param.path.string('id') id: string): Promise<User | null> {
+    return await this.userRepository.findById(Number(id));
+  }
+
+  @get('/users', {
+    responses: {
+      '200': {
+        description: 'List of all users',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  id: { type: 'string' },
+                  name: { type: 'string' },
+                  surname: { type: 'string' },
+                  email: { type: 'string', format: 'email' },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+  async findAll(): Promise<User[]> {
+    return await this.userRepository.find();
   }
 }

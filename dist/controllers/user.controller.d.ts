@@ -24,4 +24,6 @@ export declare class UserController {
         message: string;
     }>;
     logout(): Promise<void>;
+    findById(id: string): Promise<User | null>;
+    findAll(): Promise<User[]>;
 }
