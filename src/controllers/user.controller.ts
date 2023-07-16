@@ -99,6 +99,12 @@ export class UserController {
           schema: {
             type: 'object',
             properties: {
+              name : {
+                type: 'string',
+              },
+              surname: {
+                type: 'string',
+              },
               email: {
                 type: 'string',
                 format: 'email',
@@ -108,7 +114,7 @@ export class UserController {
                 minLength: 8,
               },
             },
-            required: ['email', 'password'],
+            required: ['name', 'surname','email', 'password'],
           },
         },
       },
@@ -116,7 +122,7 @@ export class UserController {
     credentials: Credentials,
   ): Promise<{ message: string }> {
     try {
-      const { email, password } = credentials;
+      const {name, surname, email, password } = credentials;
       const existingUser = await this.userRepository.findOne({ where: { email } });
 
       if (existingUser) {
@@ -124,7 +130,7 @@ export class UserController {
       }
 
       const hashedPassword = await hashPassword(password, 10);
-      await this.userRepository.create({ email, password: hashedPassword, roles: ['user'] });
+      await this.userRepository.create({name: name,  surname : surname, email, password: hashedPassword, roles: ['user'] });
       return { message: 'User registered successfully' };
     } catch (error) {
       console.error('Error during user registration:', error);

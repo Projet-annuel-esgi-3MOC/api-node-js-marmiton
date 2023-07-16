@@ -26,12 +26,14 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     (0, repository_1.property)({
         type: 'string',
+        required: true,
     }),
     tslib_1.__metadata("design:type", String)
 ], User.prototype, "name", void 0);
 tslib_1.__decorate([
     (0, repository_1.property)({
         type: 'string',
+        required: true,
     }),
     tslib_1.__metadata("design:type", String)
 ], User.prototype, "surname", void 0);

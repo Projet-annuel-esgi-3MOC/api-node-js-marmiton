@@ -22,13 +22,13 @@ let UserController = class UserController {
     }
     async register(credentials) {
         try {
-            const { email, password } = credentials;
+            const { name, surname, email, password } = credentials;
             const existingUser = await this.userRepository.findOne({ where: { email } });
             if (existingUser) {
                 return { message: 'User with this email already exists' };
             }
             const hashedPassword = await (0, hash_password_bcryptjs_1.hashPassword)(password, 10);
-            await this.userRepository.create({ email, password: hashedPassword, roles: ['user'] });
+            await this.userRepository.create({ name: name, surname: surname, email, password: hashedPassword, roles: ['user'] });
             return { message: 'User registered successfully' };
         }
         catch (error) {
@@ -120,6 +120,12 @@ tslib_1.__decorate([
                 schema: {
                     type: 'object',
                     properties: {
+                        name: {
+                            type: 'string',
+                        },
+                        surname: {
+                            type: 'string',
+                        },
                         email: {
                             type: 'string',
                             format: 'email',
@@ -129,7 +135,7 @@ tslib_1.__decorate([
                             minLength: 8,
                         },
                     },
-                    required: ['email', 'password'],
+                    required: ['name', 'surname', 'email', 'password'],
                 },
             },
         },
