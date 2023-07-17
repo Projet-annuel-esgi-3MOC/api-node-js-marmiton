@@ -15,4 +15,5 @@ tslib_1.__exportStar(require("./pointlevel.controller"), exports);
 tslib_1.__exportStar(require("./conversation.controller"), exports);
 tslib_1.__exportStar(require("./messages-user.controller"), exports);
 tslib_1.__exportStar(require("./video.controller"), exports);
+tslib_1.__exportStar(require("./photo.controller"), exports);
 //# sourceMappingURL=index.js.map

@@ -14,4 +14,5 @@ tslib_1.__exportStar(require("./forum.model"), exports);
 tslib_1.__exportStar(require("./pointlevel.model"), exports);
 tslib_1.__exportStar(require("./conversation.model"), exports);
 tslib_1.__exportStar(require("./video.model"), exports);
+tslib_1.__exportStar(require("./photo.model"), exports);
 //# sourceMappingURL=index.js.map
