@@ -9,3 +9,4 @@ export * from './league.repository';
 export * from './challenge.repository';
 export * from './forum.repository';
 export * from './pointlevel.repository';
+export * from './conversation.repository';

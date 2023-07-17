@@ -65,6 +65,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", String)
 ], User.prototype, "created", void 0);
+tslib_1.__decorate([
+    (0, repository_1.property)({
+        type: 'number',
+    }),
+    tslib_1.__metadata("design:type", Number)
+], User.prototype, "messagesId", void 0);
 User = tslib_1.__decorate([
     (0, repository_1.model)({
         settings: {

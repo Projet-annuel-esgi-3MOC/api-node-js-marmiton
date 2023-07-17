@@ -12,4 +12,6 @@ tslib_1.__exportStar(require("./league.controller"), exports);
 tslib_1.__exportStar(require("./challenge.controller"), exports);
 tslib_1.__exportStar(require("./forum.controller"), exports);
 tslib_1.__exportStar(require("./pointlevel.controller"), exports);
+tslib_1.__exportStar(require("./conversation.controller"), exports);
+tslib_1.__exportStar(require("./messages-user.controller"), exports);
 //# sourceMappingURL=index.js.map

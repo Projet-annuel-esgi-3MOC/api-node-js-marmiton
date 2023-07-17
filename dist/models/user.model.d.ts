@@ -8,6 +8,7 @@ export declare class User extends Entity {
     roles?: string[];
     emailVerified?: boolean;
     created?: string;
+    messagesId?: number;
     constructor(data?: Partial<User>);
 }
 export interface UserRelations {

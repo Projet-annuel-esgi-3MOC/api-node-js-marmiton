@@ -9,3 +9,4 @@ export * from './league.model';
 export * from './challenge.model';
 export * from './forum.model';
 export * from './pointlevel.model';
+export * from './conversation.model';

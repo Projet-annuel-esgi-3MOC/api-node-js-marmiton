@@ -51,7 +51,7 @@ export class User extends Entity {
     type: 'array',
     itemType: 'string',
   })
-  roles?: string[];
+  roles?: string[] = ["user" , "admin"];
 
   @property({
     type: 'boolean',
@@ -65,6 +65,10 @@ export class User extends Entity {
   })
   created?: string;
 
+  @property({
+    type: 'number',
+  })
+  messagesId?: number;
 
   constructor(data?: Partial<User>) {
     super(data);
