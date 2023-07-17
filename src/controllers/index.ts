@@ -11,3 +11,4 @@ export * from './forum.controller';
 export * from './pointlevel.controller';
 export * from './conversation.controller';
 export * from './messages-user.controller';
+export * from './video.controller';

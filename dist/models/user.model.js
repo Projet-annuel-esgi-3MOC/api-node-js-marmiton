@@ -6,6 +6,7 @@ const repository_1 = require("@loopback/repository");
 let User = class User extends repository_1.Entity {
     constructor(data) {
         super(data);
+        this.roles = ["user", "admin"];
     }
 };
 tslib_1.__decorate([

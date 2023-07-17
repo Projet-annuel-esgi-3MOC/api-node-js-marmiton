@@ -10,3 +10,4 @@ export * from './challenge.repository';
 export * from './forum.repository';
 export * from './pointlevel.repository';
 export * from './conversation.repository';
+export * from './video.repository';

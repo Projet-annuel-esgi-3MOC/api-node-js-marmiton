@@ -13,4 +13,5 @@ tslib_1.__exportStar(require("./challenge.repository"), exports);
 tslib_1.__exportStar(require("./forum.repository"), exports);
 tslib_1.__exportStar(require("./pointlevel.repository"), exports);
 tslib_1.__exportStar(require("./conversation.repository"), exports);
+tslib_1.__exportStar(require("./video.repository"), exports);
 //# sourceMappingURL=index.js.map
