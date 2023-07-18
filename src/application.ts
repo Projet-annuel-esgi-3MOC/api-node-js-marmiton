@@ -14,6 +14,14 @@ import { AuthenticationComponent } from '@loopback/authentication';
 import { MysqlDataSource } from './datasources';
 import {BcryptHasher} from './services/hash.password.bcryptjs';
 import { PasswordHasherBindings } from './keys';
+import { Middleware } from '@loopback/rest';
+
+const corsMiddleware: Middleware = async (ctx, next) => {
+  ctx.response.setHeader('Access-Control-Allow-Origin', '*');
+  ctx.response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+  ctx.response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  await next();
+};
 
 export {ApplicationConfig};
 
@@ -29,10 +37,11 @@ export class CookupApiApplication extends BootMixin(
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
 
-    // Customize @loopback/rest-explorer configuration here
+    // Configure CORS for Rest Explorer
     this.configure(RestExplorerBindings.COMPONENT).to({
       path: '/explorer',
     });
+
     // Bind password hasher
     this.bind(PasswordHasherBindings.PASSWORD_HASHER).toClass(BcryptHasher);
     
@@ -57,5 +66,8 @@ export class CookupApiApplication extends BootMixin(
     this.component(JWTAuthenticationComponent);
     // Bind datasource
     this.dataSource( MysqlDataSource, UserServiceBindings.DATASOURCE_NAME);
+
+    // Enable CORS middleware
+    this.middleware(corsMiddleware);
   }
 }

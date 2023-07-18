@@ -14,6 +14,12 @@ const authentication_1 = require("@loopback/authentication");
 const datasources_1 = require("./datasources");
 const hash_password_bcryptjs_1 = require("./services/hash.password.bcryptjs");
 const keys_1 = require("./keys");
+const corsMiddleware = async (ctx, next) => {
+    ctx.response.setHeader('Access-Control-Allow-Origin', '*');
+    ctx.response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    ctx.response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    await next();
+};
 class CookupApiApplication extends (0, boot_1.BootMixin)((0, service_proxy_1.ServiceMixin)((0, repository_1.RepositoryMixin)(rest_1.RestApplication))) {
     constructor(options = {}) {
         super(options);
@@ -21,7 +27,7 @@ class CookupApiApplication extends (0, boot_1.BootMixin)((0, service_proxy_1.Ser
         this.sequence(sequence_1.MySequence);
         // Set up default home page
         this.static('/', path_1.default.join(__dirname, '../public'));
-        // Customize @loopback/rest-explorer configuration here
+        // Configure CORS for Rest Explorer
         this.configure(rest_explorer_1.RestExplorerBindings.COMPONENT).to({
             path: '/explorer',
         });
@@ -46,6 +52,8 @@ class CookupApiApplication extends (0, boot_1.BootMixin)((0, service_proxy_1.Ser
         this.component(authentication_jwt_1.JWTAuthenticationComponent);
         // Bind datasource
         this.dataSource(datasources_1.MysqlDataSource, authentication_jwt_1.UserServiceBindings.DATASOURCE_NAME);
+        // Enable CORS middleware
+        this.middleware(corsMiddleware);
     }
 }
 exports.CookupApiApplication = CookupApiApplication;
